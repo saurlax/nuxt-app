@@ -20,6 +20,7 @@ const items = computed(() => [
   {
     label: "Tools",
     to: "/tools/crypto",
+    active: route.path.startsWith("/tools"),
   },
 ]);
 </script>
