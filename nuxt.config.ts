@@ -1,3 +1,5 @@
+import { execSync } from "child_process";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2026-01-01",
@@ -10,6 +12,9 @@ export default defineNuxtConfig({
         dir: "./app/assets/icons",
       },
     ],
+  },
+  appConfig: {
+    commitHash: execSync("git rev-parse HEAD").toString().trim() || "unknown",
   },
   // waiting for nuxt 4.3 to support appLayout in routeRules
   // routeRules: {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
+const { commitHash } = useAppConfig();
 
 const items = computed(() => [
   {
@@ -64,7 +65,10 @@ const { data: subnavItems } = await useAsyncData("subnav", () => {
   <UFooter>
     <template #left>
       <p class="text-muted text-sm">
-        Copyright © {{ new Date().getFullYear() }} Saurlax
+        Copyright © {{ new Date().getFullYear() }} Saurlax. Built on
+        <ULink :to="`https://github.com/saurlax/nuxt-app/commit/${commitHash}`">{{
+          commitHash?.slice(0, 7)
+        }}</ULink>
       </p>
     </template>
   </UFooter>
