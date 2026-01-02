@@ -1,5 +1,15 @@
 <script setup lang="ts">
 const route = useRoute();
+
+const items = computed(() => [
+  {
+    label: "Tools",
+    icon: "i-lucide-toolbox",
+    to: "/tools/crypto",
+    active: route.path.startsWith("/tools"),
+  },
+]);
+
 const { data: subnavItems } = await useAsyncData(
   () => {
     return queryCollectionNavigation("tools")
@@ -16,13 +26,6 @@ const { data: subnavItems } = await useAsyncData(
   },
   { watch: [route] }
 );
-const items = computed(() => [
-  {
-    label: "Tools",
-    to: "/tools/crypto",
-    active: route.path.startsWith("/tools"),
-  },
-]);
 </script>
 
 <template>
@@ -47,6 +50,8 @@ const items = computed(() => [
 
     <template #body>
       <UNavigationMenu :items="items" orientation="vertical" />
+      <USeparator class="my-2" type="dashed" />
+      <UNavigationMenu :items="subnavItems" orientation="vertical" />
     </template>
 
     <template v-if="route.path !== '/'" #bottom>

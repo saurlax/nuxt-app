@@ -12,5 +12,10 @@ definePageMeta({
 </script>
 
 <template>
-  {{ data!.body }}
+  <div v-if="data">
+    <UPageHeader :title="data.title" :description="data.description" />
+    <UPageBody>
+      <ContentRenderer :value="data.body" />
+    </UPageBody>
+  </div>
 </template>
